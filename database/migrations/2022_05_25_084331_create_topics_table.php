@@ -21,6 +21,8 @@ class CreateTopicsTable extends Migration
             $table->boolean('locked');
             $table->unsignedBigInteger('create_id');
             $table->foreign("create_id")->references("user_id")->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->unsignedBigInteger('update_id');
+            $table->foreign("update_id")->references("user_id")->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
