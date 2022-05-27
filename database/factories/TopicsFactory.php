@@ -4,8 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
+use App\Models\Forums;
 
-class BoardsFactory extends Factory
+class TopicsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,7 +16,8 @@ class BoardsFactory extends Factory
     public function definition()
     {
         return [
-            'description' => $this->faker->sentence(),
+            'content' => $this->faker->sentence(),
+            'forum' => Forums::factory(),
             'create_id' => User::factory(),
             'update_id' => User::factory()
         ];

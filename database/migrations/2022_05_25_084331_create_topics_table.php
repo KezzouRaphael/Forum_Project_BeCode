@@ -18,7 +18,7 @@ class CreateTopicsTable extends Migration
             $table->text('content');
             $table->unsignedBigInteger("forum");
             $table->foreign("forum")->references('forum_id')->on("forums")->cascadeOnDelete()->cascadeOnUpdate();
-            $table->boolean('locked');
+            $table->boolean('locked')->default(0);
             $table->unsignedBigInteger('create_id');
             $table->foreign("create_id")->references("user_id")->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('update_id');
