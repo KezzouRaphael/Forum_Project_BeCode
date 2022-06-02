@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $user = User::factory()->create([
-            'name' => "Raphael Kezzou",
-            'email' => "raphael.kezzou@live.fr"
+            'nickname' => "Raphael Kezzou",
+            'email' => "raphael.kezzou@live.fr",
+            'signature' => "signature"
         ]);
         Boards::factory(4)->create([
             'create_id' => $user->id,
@@ -40,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'post' => $user->id
         ]);
         $user = User::factory()->create([
-            'name' => "user",
+            'nickname' => "user",
             'email' => "user@user.com"
         ]);
     }
