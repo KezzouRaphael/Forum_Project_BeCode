@@ -12,8 +12,8 @@ use App\Http\Controllers\RegisterController;
 
 
 Route::get('login', [AuthUserController::class, 'login']);
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
 Route::middleware('auth:sanctum')->group(function () {
