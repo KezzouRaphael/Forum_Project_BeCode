@@ -20,9 +20,9 @@ class CreateTopicsTable extends Migration
             $table->foreign("forum")->references('forum_id')->on("forums")->cascadeOnDelete()->cascadeOnUpdate();
             $table->boolean('locked')->default(0);
             $table->unsignedBigInteger('create_id');
-            $table->foreign("create_id")->references("user_id")->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign("create_id")->references("id")->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('update_id');
-            $table->foreign("update_id")->references("user_id")->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign("update_id")->references("id")->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
