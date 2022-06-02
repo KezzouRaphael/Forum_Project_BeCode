@@ -10,10 +10,10 @@ use App\Http\Controllers\AuthUserController;
 
 
 
-Route::get('login',[AuthUserController::class,'login']);
+Route::post('login',[AuthUserController::class,'login']);
  
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get('user',[AuthUserController::class,'user']);
-    Route::get('logout',[AuthUserController::class,'logout']);
+    Route::post('user',[AuthUserController::class,'user']);
+    Route::post('logout',[AuthUserController::class,'logout']);
 });
