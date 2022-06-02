@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthUserController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\RegisterController;
 
 
@@ -19,4 +20,6 @@ Route::post('register', [RegisterController::class, 'store'])->middleware('guest
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthUserController::class, 'user']);
     Route::get('logout', [AuthUserController::class, 'logout']);
+    Route::get('forums', [ForumController::class, 'create']);
+    Route::post('forums', [ForumController::class, 'store']);
 });
