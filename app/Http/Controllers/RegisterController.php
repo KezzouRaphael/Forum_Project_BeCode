@@ -29,8 +29,7 @@ class RegisterController extends Controller
         $user->signature = $attributes['signature'];
         $user->password = Hash::make($attributes['password']);
         $user->save();
-        return redirect()->action([AuthUserController::class, 'login'], ["email" => $user->email, "password" =>  $attributes['password']]);
-        //return redirect()->action([AuthUserController::class, 'login'], ["request" => request()]);
-        //return redirect('/')->with('success', 'Your account has been created.');
+        //return redirect()->action([AuthUserController::class, 'login'], ["email" => $user->email, "password" =>  $attributes['password']]);
+        return redirect('/')->with('success', 'Your account has been created.');
     }
 }
