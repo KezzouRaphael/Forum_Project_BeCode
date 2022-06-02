@@ -15,9 +15,12 @@ Route::get('login', [AuthUserController::class, 'login']);
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::get('board/boards', [BoardController::class, 'boards']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthUserController::class, 'user']);
     Route::post('board/create', [BoardController::class, 'create']);
+    Route::post('board/edit', [BoardController::class, 'create']);
+    Route::get('board/board', [BoardController::class, 'board']);
     Route::get('logout', [AuthUserController::class, 'logout']);
 });
