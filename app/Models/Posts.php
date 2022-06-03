@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Posts extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = "post_id";
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'create_id');

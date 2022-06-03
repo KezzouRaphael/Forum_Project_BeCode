@@ -37,7 +37,12 @@ class DatabaseSeeder extends Seeder
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);
-        Posts::factory(10)->create();
+
+        Posts::factory(10)->create([
+            'create_id' => $user->id,
+            'update_id' => $user->id
+        ]);
+
         $user = User::factory()->create([
             'nickname' => "user",
             'email' => "user@user.com"

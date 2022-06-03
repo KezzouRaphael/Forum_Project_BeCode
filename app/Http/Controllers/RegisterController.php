@@ -1,6 +1,6 @@
 <?php
-
-namespace App\Http\Controllers;
+ namespace App\Http\Controllers;
+ 
 
 use App\Models\User;
 use Illuminate\Validation\Rule;
@@ -33,3 +33,4 @@ class RegisterController extends Controller
         return redirect('/')->with('success', 'Your account has been created.');
     }
 }
+ 
