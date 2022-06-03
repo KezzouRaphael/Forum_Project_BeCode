@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthUserController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\RegisterController;
-
+use App\Http\Controllers\TopicController;
 
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {return $request->user();});
@@ -26,6 +26,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('forums/edit', [ForumController::class, 'edit']);
     Route::delete('forums/delete', [ForumController::class, 'delete']);
 
+    Route::get('topics/create', [TopicController::class, 'create']);
+    Route::post('topics/store', [TopicController::class, 'store']);
+    Route::put('topics/edit', [TopicController::class, 'edit']);
+    Route::delete('topics/delete', [TopicController::class, 'delete']);
+
     Route::post('board/create', [BoardController::class, 'create']);
     Route::put('board/edit', [BoardController::class, 'edit']);
     Route::delete('board/delete', [BoardController::class, 'delete']);
@@ -33,3 +38,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::get('board/board', [BoardController::class, 'board']);
 Route::get('forums/forum', [ForumController::class, 'forum']);
+Route::get('topics/topic', [TopicController::class, 'topic']);
