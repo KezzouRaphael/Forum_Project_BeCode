@@ -20,7 +20,7 @@ Route::get('board/boards', [BoardController::class, 'boards']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthUserController::class, 'user']);
     Route::post('board/create', [BoardController::class, 'create']);
-    Route::post('board/edit', [BoardController::class, 'create']);
+    Route::put('board/edit', [BoardController::class, 'edit']);
     Route::get('board/board', [BoardController::class, 'board']);
     Route::get('logout', [AuthUserController::class, 'logout']);
 });

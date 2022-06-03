@@ -25,8 +25,8 @@ class BoardController extends Controller
         ]);
         $board=new Boards();
         $board->description = $attributes['description'];
-        $board->create_id = Auth::id();;
-        $board->update_id = Auth::id();;
+        $board->create_id = Auth::id();
+        $board->update_id = Auth::id();
         $board->created_at = now();
         $board->updated_at = now();
         $board->save();
@@ -35,22 +35,22 @@ class BoardController extends Controller
 
 
     // edit boards
-    // create board 
     public function edit(Request $request){
 
         $attributes = request()->validate([
             'description' => ['required']
         ]);
-        $board=Boards::where(['create_id'=> Auth::id(),'board_id', $request->input('board_id')]);
-
+        $board=new Boards();
+        $board=Boards::where(['create_id'=> Auth::id(),'board_id'=> $request->input('board_id')])->first();
         $board->description = $attributes['description'];
-        $board->create_id = Auth::id();;
-        $board->update_id = Auth::id();;
-        $board->created_at = now();
+        $board->update_id = Auth::id();
         $board->updated_at = now();
-        $board->save();
+        $board->update();
+        //return response($board->toJson(),200);
+       
     }
 
+ 
 
 
 
@@ -71,7 +71,7 @@ class BoardController extends Controller
     //show boards
 
     public function boards(Request $request){
-        $board=Boards::where(['create_id'=> 96,'board_id'=> $request->input('board_id')])->get();
+        $board=Boards::where(['create_id'=> Auth::id(),'board_id'=> $request->input('board_id')])->get();
            
         return response($board->toJson(),200);
              
