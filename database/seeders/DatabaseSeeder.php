@@ -33,13 +33,11 @@ class DatabaseSeeder extends Seeder
             'update_id' => $user->id
         ]);
         Topics::factory(10)->create([
-            'forum' => $forum->id,
+            'forum' => $forum->forum_id,
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);
-        Posts::factory(10)->create([
-            'post' => $user->id
-        ]);
+        Posts::factory(10)->create();
         $user = User::factory()->create([
             'nickname' => "user",
             'email' => "user@user.com"

@@ -18,6 +18,7 @@ class Forums extends Model
     use HasFactory;
 
     protected $primaryKey = "forum_id";
+
     public function board()
     {
         return $this->belongsTo(Boards::class, 'board_id');
