@@ -34,9 +34,7 @@ class TopicController extends Controller
         return response($topic->toJson(), 200);
  
     }
-
-
-
+ 
     public function topic(Request $request)
     {
         $topic = Topics::where(['topic_id' => $request->input('topic_id')])->get();

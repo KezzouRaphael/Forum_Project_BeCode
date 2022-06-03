@@ -37,9 +37,6 @@ class ForumController extends Controller
     {
         $forum = Forums::where(['forum_id' => $request->input('forum_id')])->first();
         return response($forum->toJson(), 200);
-        return view('forum.show', [
-            'forum' => $forum,
-        ]);
     }
 
 
