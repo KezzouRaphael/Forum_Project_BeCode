@@ -10,11 +10,8 @@ use Illuminate\Validation\Rule;
 
 class ForumController extends Controller
 {
+ 
     public function create()
-    {
-        return view('forum.create');
-    }
-    public function store()
     {
         $attributes = request()->validate([
             'title' => ['required'],

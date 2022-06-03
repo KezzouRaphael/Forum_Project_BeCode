@@ -20,7 +20,7 @@ use App\Http\Controllers\PostController;
 //user
 Route::get('login', [AuthUserController::class, 'login']);
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+
 
 //board
 Route::get('board/boards', [BoardController::class, 'boards']);
@@ -42,7 +42,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // forum
     Route::get('forums/create', [ForumController::class, 'create']);
-    Route::post('forums/store', [ForumController::class, 'store']);
     Route::put('forums/edit', [ForumController::class, 'edit']);
     Route::delete('forums/delete', [ForumController::class, 'delete']);
     
