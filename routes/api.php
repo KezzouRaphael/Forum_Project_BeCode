@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthUserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\PostController;
 
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {return $request->user();});
@@ -22,16 +23,26 @@ Route::post('register', [RegisterController::class, 'store'])->middleware('guest
 Route::get('board/boards', [BoardController::class, 'boards']);
 Route::get('board/board', [BoardController::class, 'board']);
 
+//post
+Route::get('post/boards', [PostController::class, 'boards']);
+Route::get('post/board', [PostController::class, 'board']);
+
+
 Route::middleware('auth:sanctum')->group(function () {
 
     //user
     Route::get('user', [AuthUserController::class, 'user']);
     Route::get('logout', [AuthUserController::class, 'logout']);
-    
+
     //board
     Route::post('board/create', [BoardController::class, 'create']);
     Route::put('board/edit', [BoardController::class, 'edit']);
     Route::delete('board/delete', [BoardController::class, 'delete']);
+
+    //post
+    Route::post('post/create', [PostController::class, 'create']);
+    Route::put('post/edit', [PostController::class, 'edit']);
+    Route::delete('post/delete', [PostController::class, 'delete']);
 
 });
 
