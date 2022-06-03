@@ -12,10 +12,6 @@ class TopicController extends Controller
 {
     public function create()
     {
-        return view('topic.create');
-    }
-    public function store()
-    {
         $attributes = request()->validate([
             'content' => ['required'],
             'forum' => ['required', Rule::exists("forums", "forum_id")],
