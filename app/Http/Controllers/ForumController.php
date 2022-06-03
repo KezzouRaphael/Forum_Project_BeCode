@@ -31,7 +31,9 @@ class ForumController extends Controller
         return response($forum->toJson(), 200);
     }
 
-    public function forum(Request $request)
+
+        // show forums
+    public function forums(Request $request)
     {
         $forum = Forums::where(['forum_id' => $request->input('forum_id')])->first();
         return response($forum->toJson(), 200);
@@ -39,6 +41,16 @@ class ForumController extends Controller
             'forum' => $forum,
         ]);
     }
+
+
+        // show forum
+        public function forum(Request $request){
+            $forum = Forums::where(['forum_id' => $request->input('forum_id')])->get();
+            return response($forum->toJson(),200);
+             
+        }
+
+
     public function edit(Request $request)
     {
         $attributes = request()->validate([

@@ -29,9 +29,18 @@ Route::get('board/board', [BoardController::class, 'board']);
  
 // forum
 Route::get('forums/forum', [ForumController::class, 'forum']);
+Route::get('forums/forums', [ForumController::class, 'forums']);
 
 // topic
 Route::get('topics/topic', [TopicController::class, 'topic']);
+Route::get('topics/topics', [TopicController::class, 'topics']);
+
+//post
+Route::post('post/post', [PostController::class, 'create']);
+Route::put('post/posts', [PostController::class, 'edit']);
+
+
+
 
 
 Route::middleware('auth:sanctum')->group(function () {
