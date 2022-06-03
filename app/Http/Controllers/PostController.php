@@ -20,13 +20,11 @@ class PostController extends Controller
         //! Todo a board should be created only by admin
         $attributes = request()->validate([
             'content' => ['required'],
-            'topic' => ['required'],
-            'post' => ['required']
+            'topic' => ['required']
         ]);
         $post=new Posts();
         $post->content = $attributes['content'];
         $post->topic = $attributes['topic'];
-        $post->post = $attributes['post'];
         $post->create_id = Auth::id();
         $post->update_id = Auth::id();
         $post->created_at = now();

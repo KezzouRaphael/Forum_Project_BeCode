@@ -18,7 +18,6 @@ class PostsFactory extends Factory
     {
         return [
             'topic' => Topics::factory(),
-            'post' => Posts::factory(),
             'content' => $this->faker->sentence(),
             'create_id' => User::factory(),
             'update_id' => User::factory()

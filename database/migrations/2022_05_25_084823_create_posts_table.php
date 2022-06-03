@@ -17,8 +17,7 @@ class CreatePostsTable extends Migration
             $table->id("post_id");
             $table->unsignedBigInteger("topic");
             $table->foreign("topic")->references('topic_id')->on("topics")->cascadeOnDelete()->cascadeOnUpdate();
-            $table->unsignedBigInteger("post");
-            $table->foreign("post")->references('post_id')->on("posts")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->unsignedBigInteger("post")->default(0);
             $table->text("content");
             $table->unsignedBigInteger('create_id');
             $table->foreign("create_id")->references("id")->on('users')->cascadeOnUpdate()->cascadeOnDelete();

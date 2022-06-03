@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
             'update_id' => $user->id
         ]);
         Posts::factory(10)->create([
-            'post' => $user->id
+            'create_id' => $user->id,
+            'update_id' => $user->id
         ]);
         $user = User::factory()->create([
             'nickname' => "user",
