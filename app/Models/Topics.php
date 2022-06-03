@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Topics extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = "topic_id";
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'create_id');
