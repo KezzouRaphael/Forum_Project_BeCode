@@ -40,7 +40,6 @@ class BoardController extends Controller
         $attributes = request()->validate([
             'description' => ['required']
         ]);
-        $board=new Boards();
         $board=Boards::where(['create_id'=> Auth::id(),'board_id'=> $request->input('board_id')])->first();
         $board->description = $attributes['description'];
         $board->update_id = Auth::id();
@@ -51,7 +50,11 @@ class BoardController extends Controller
     }
 
  
-
+    public function delete(Request $request){
+        $board=Boards::where(['create_id'=> Auth::id(),'board_id'=> $request->input('board_id')])->first();
+        $board->delete();
+       
+    }
 
 
     // delete board

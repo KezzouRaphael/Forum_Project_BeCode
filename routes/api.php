@@ -21,6 +21,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthUserController::class, 'user']);
     Route::post('board/create', [BoardController::class, 'create']);
     Route::put('board/edit', [BoardController::class, 'edit']);
+    Route::delete('board/delete', [BoardController::class, 'delete']);
     Route::get('board/board', [BoardController::class, 'board']);
     Route::get('logout', [AuthUserController::class, 'logout']);
 });
+
+
