@@ -20,7 +20,16 @@ Route::post('register', [RegisterController::class, 'store'])->middleware('guest
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthUserController::class, 'user']);
     Route::get('logout', [AuthUserController::class, 'logout']);
-    Route::get('forums', [ForumController::class, 'create']);
-    Route::post('forums', [ForumController::class, 'store']);
-    Route::get('forums/{forum:forum_id}', [ForumController::class, 'show']);
+
+    Route::get('forums/create', [ForumController::class, 'create']);
+    Route::post('forums/store', [ForumController::class, 'store']);
+    Route::put('forums/edit', [ForumController::class, 'edit']);
+    Route::delete('forums/delete', [ForumController::class, 'delete']);
+
+    Route::post('board/create', [BoardController::class, 'create']);
+    Route::put('board/edit', [BoardController::class, 'edit']);
+    Route::delete('board/delete', [BoardController::class, 'delete']);
 });
+
+Route::get('board/board', [BoardController::class, 'board']);
+Route::get('forums/forum', [ForumController::class, 'forum']);
