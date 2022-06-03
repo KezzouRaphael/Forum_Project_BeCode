@@ -26,9 +26,12 @@ Route::post('register', [RegisterController::class, 'store'])->middleware('guest
 Route::get('board/boards', [BoardController::class, 'boards']);
 Route::get('board/board', [BoardController::class, 'board']);
 
-//post
-Route::get('post/boards', [PostController::class, 'boards']);
-Route::get('post/board', [PostController::class, 'board']);
+ 
+// forum
+Route::get('forums/forum', [ForumController::class, 'forum']);
+
+// topic
+Route::get('topics/topic', [TopicController::class, 'topic']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -37,27 +40,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthUserController::class, 'user']);
     Route::get('logout', [AuthUserController::class, 'logout']);
 
- 
+    // forum
     Route::get('forums/create', [ForumController::class, 'create']);
     Route::post('forums/store', [ForumController::class, 'store']);
     Route::put('forums/edit', [ForumController::class, 'edit']);
     Route::delete('forums/delete', [ForumController::class, 'delete']);
-
+    
+    // topic
     Route::get('topics/create', [TopicController::class, 'create']);
     Route::post('topics/store', [TopicController::class, 'store']);
     Route::put('topics/edit', [TopicController::class, 'edit']);
     Route::delete('topics/delete', [TopicController::class, 'delete']);
 
-    Route::post('board/create', [BoardController::class, 'create']);
-    Route::put('board/edit', [BoardController::class, 'edit']);
-    Route::delete('board/delete', [BoardController::class, 'delete']);
-});
-
-Route::get('board/board', [BoardController::class, 'board']);
-Route::get('forums/forum', [ForumController::class, 'forum']);
-Route::get('topics/topic', [TopicController::class, 'topic']);
-
-    //board
+    // board
     Route::post('board/create', [BoardController::class, 'create']);
     Route::put('board/edit', [BoardController::class, 'edit']);
     Route::delete('board/delete', [BoardController::class, 'delete']);
@@ -67,7 +62,14 @@ Route::get('topics/topic', [TopicController::class, 'topic']);
     Route::put('post/edit', [PostController::class, 'edit']);
     Route::delete('post/delete', [PostController::class, 'delete']);
 
+
 });
+
+
+
+
+
+ 
 
 
 
