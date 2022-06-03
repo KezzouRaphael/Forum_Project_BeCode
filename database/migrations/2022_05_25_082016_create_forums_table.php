@@ -15,7 +15,7 @@ class CreateForumsTable extends Migration
     {
         Schema::create('forums', function (Blueprint $table) {
             $table->id("forum_id");
-            $table->text("title");
+            $table->text("title")->unique();
             $table->text("description");
             $table->string("image", 50)->nullable();
             $table->boolean('locked')->default(0);

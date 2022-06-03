@@ -32,4 +32,11 @@ class ForumController extends Controller
         $forum->updated_at = now();
         $forum->save();
     }
+
+    public function show(Forums $forum)
+    {
+        return view('forum.show', [
+            'forum' => $forum,
+        ]);
+    }
 }

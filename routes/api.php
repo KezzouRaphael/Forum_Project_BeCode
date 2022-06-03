@@ -22,4 +22,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('logout', [AuthUserController::class, 'logout']);
     Route::get('forums', [ForumController::class, 'create']);
     Route::post('forums', [ForumController::class, 'store']);
+    Route::get('forums/{forum:forum_id}', [ForumController::class, 'show']);
 });
