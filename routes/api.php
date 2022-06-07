@@ -9,13 +9,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\PostController;
 
-
-
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {return $request->user();});
-
-
-
-
 
 //user
 Route::get('login', [AuthUserController::class, 'login']);
@@ -42,24 +36,27 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('topics/delete', [TopicController::class, 'delete']);
 
     //board
-    Route::post('board/create', [BoardController::class, 'create']);
-    Route::put('board/edit', [BoardController::class, 'edit']);
-    Route::delete('board/delete', [BoardController::class, 'delete']);
+    Route::post('boards/create', [BoardController::class, 'create']);
+    Route::put('boards/edit', [BoardController::class, 'edit']);
+    Route::delete('boards/delete', [BoardController::class, 'delete']);
 
     //post
-    Route::post('post/create', [PostController::class, 'create']);
-    Route::put('post/edit', [PostController::class, 'edit']);
-    Route::delete('post/delete', [PostController::class, 'delete']);
+    Route::post('posts/create', [PostController::class, 'create']);
+    Route::put('posts/edit', [PostController::class, 'edit']);
+    Route::delete('posts/delete', [PostController::class, 'delete']);
 });
 //board
-Route::get('board/boards', [BoardController::class, 'boards']);
-Route::get('board/board', [BoardController::class, 'board']);
+Route::get('boards/{id}', [BoardController::class, 'board']);
+Route::get('boards', [BoardController::class, 'boards']);
 
 //post
-Route::get('post/posts', [PostController::class, 'posts']);
-Route::get('post/post', [PostController::class, 'post']);
+Route::get('posts/{id}', [PostController::class, 'post']);
+Route::get('posts', [PostController::class, 'posts']);
 
-Route::get('forums/forum', [ForumController::class, 'forum']);
-Route::get('forums/forums', [ForumController::class, 'forums']);
-Route::get('topics/topic', [TopicController::class, 'topic']);
-Route::get('topics/topics', [TopicController::class, 'topics']);
+//forum
+Route::get('forums/{id}', [ForumController::class, 'forum']);
+Route::get('forums', [ForumController::class, 'forums']);
+
+//topic
+Route::get('topics/{id}', [TopicController::class, 'topic']);
+Route::get('topics', [TopicController::class, 'topics']);
