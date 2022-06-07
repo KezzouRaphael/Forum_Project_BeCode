@@ -23,21 +23,21 @@ Route::get('register', [RegisterController::class, 'create'])->middleware('guest
 
 
 //board
-Route::get('board/boards', [BoardController::class, 'boards']);
-Route::get('board/board/{id}', [BoardController::class, 'board']);
+Route::get('boards', [BoardController::class, 'boards']);
+Route::get('boards/{id}', [BoardController::class, 'board']);
 
  
 // forum
-Route::get('forums/forum/{id}', [ForumController::class, 'forum']);
-Route::get('forums/forums', [ForumController::class, 'forums']);
+Route::get('forums/{id}', [ForumController::class, 'forum']);
+Route::get('forums', [ForumController::class, 'forums']);
 
 // topic
-Route::get('topics/topic/{id}', [TopicController::class, 'topic']);
-Route::get('topics/topics', [TopicController::class, 'topics']);
+Route::get('topics/{id}', [TopicController::class, 'topic']);
+Route::get('topics', [TopicController::class, 'topics']);
 
 //post
-Route::post('post/post/{id}', [PostController::class, 'create']);
-Route::put('post/posts', [PostController::class, 'edit']);
+Route::post('posts/{id}', [PostController::class, 'post']);
+Route::put('posts', [PostController::class, 'posts']);
 
 
 
@@ -60,14 +60,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('topics/delete/{id}', [TopicController::class, 'delete']);
 
     // board
-    Route::post('board/create', [BoardController::class, 'create']);
-    Route::put('board/edit/{id}', [BoardController::class, 'edit']);
-    Route::delete('board/delete/{id}', [BoardController::class, 'delete']);
+    Route::post('boards/create', [BoardController::class, 'create']);
+    Route::put('boards/edit/{id}', [BoardController::class, 'edit']);
+    Route::delete('boards/delete/{id}', [BoardController::class, 'delete']);
 
     //post
-    Route::post('post/create', [PostController::class, 'create']);
-    Route::put('post/edit/{id}', [PostController::class, 'edit']);
-    Route::delete('post/delete/{id}', [PostController::class, 'delete']);
+    Route::post('posts/create', [PostController::class, 'create']);
+    Route::put('posts/edit/{id}', [PostController::class, 'edit']);
+    Route::delete('posts/delete/{id}', [PostController::class, 'delete']);
 
 
 });

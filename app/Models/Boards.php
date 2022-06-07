@@ -23,6 +23,7 @@ class Boards extends Model
     {
         return $this->belongsTo(User::class, 'create_id');
     }
+    
     public function modifier(): BelongsTo
     {
         return $this->belongsTo(User::class, 'update_id');

@@ -16,7 +16,6 @@ class PostController extends Controller
 
     // create post 
     public function create(Request $request){
-
         //! Todo a board should be created only by admin
         $attributes = request()->validate([
             'content' => ['required'],
@@ -35,14 +34,14 @@ class PostController extends Controller
 
 
     // edit post
-    public function edit(Request $request){
+    public function edit(Request $request, int $id){
 
         $attributes = request()->validate([
             'content' => ['required'],
             'topic' => ['required'],
             'post' => ['required']
         ]);
-        $post=Posts::where(['create_id'=> Auth::id(),'post_id'=> $request->input('post_id')])->first();
+        $post=Posts::where(['create_id'=> Auth::id(),'post_id'=> $id])->first();
         $post->content = $attributes['content'];
         $post->topic = $attributes['topic'];
         $post->post = $attributes['post'];
@@ -54,9 +53,9 @@ class PostController extends Controller
     }
 
  
-    // delete board
-    public function delete(Request $request){
-        $post=Posts::where(['create_id'=> Auth::id(),'post_id'=> $request->input('post_id')])->first();
+    // delete post
+    public function delete(Request $request, int $id) {
+        $post=Posts::where(['create_id'=> Auth::id(),'post_id'=> $id])->first();
         $post->delete();
        
     }
@@ -65,21 +64,18 @@ class PostController extends Controller
  
 
 
-    // show board
-    public function post(Request $request){
-        $post=Posts::where(['post_id'=> $request->input('post_id')])->get();
-       
+    // show post
+    public function post(Request $request ,int $id) {
+        $post=Posts::where(['post_id'=> $id])->get();
         return response($post->toJson(),200);
          
     }
 
 
 
-    //show boards
-
+    //show posts
     public function posts(Request $request){
-        $post=Posts::where(['create_id'=> Auth::id(),'post_id'=> $request->input('post_id')])->get();
-           
+        $post=new Posts();
         return response($post->toJson(),200);
              
     }
