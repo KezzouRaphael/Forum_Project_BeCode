@@ -38,6 +38,7 @@ Route::get('topics', [TopicController::class, 'topics']);
 //post
 Route::get('posts/{id}', [PostController::class, 'post']);
 Route::get('posts', [PostController::class, 'posts']);
+Route::get('forum/{id}/posts', [PostController::class, 'forum_posts']);
 
 
 

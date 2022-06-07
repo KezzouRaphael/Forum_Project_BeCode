@@ -35,7 +35,7 @@ class ForumController extends Controller
         // show forums
     public function forums(Request $request)
     {
-        $forum = Forums::where(['forum_id' => $request->input('forum_id')])->first();
+        $forum = Forums::all();
         return response($forum->toJson(), 200);
     }
 

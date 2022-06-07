@@ -30,7 +30,7 @@ class TopicController extends Controller
 
     public function topics(Request $request)
     {
-        $topic = Topics::where(['topic_id' => $request->input('topic_id')])->first();
+        $topic = Topics::all();
         return response($topic->toJson(), 200);
  
     }
