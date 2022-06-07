@@ -35,6 +35,12 @@ class TopicController extends Controller
             'topic' => $topic,
         ]);
     }
+    public function topics(Request $request)
+    {
+        $topic = Topics::where(['create_id' => Auth::id(), 'topic_id' => $request->input('topic_id')])->get();
+
+        return response($topic->toJson(), 200);
+    }
     public function edit(Request $request)
     {
         $attributes = request()->validate([

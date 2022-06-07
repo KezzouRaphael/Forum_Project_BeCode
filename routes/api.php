@@ -56,9 +56,10 @@ Route::get('board/boards', [BoardController::class, 'boards']);
 Route::get('board/board', [BoardController::class, 'board']);
 
 //post
-Route::get('post/boards', [PostController::class, 'boards']);
-Route::get('post/board', [PostController::class, 'board']);
+Route::get('post/posts', [PostController::class, 'posts']);
+Route::get('post/post', [PostController::class, 'post']);
 
-Route::get('board/board', [BoardController::class, 'board']);
 Route::get('forums/forum', [ForumController::class, 'forum']);
+Route::get('forums/forums', [ForumController::class, 'forums']);
 Route::get('topics/topic', [TopicController::class, 'topic']);
+Route::get('topics/topics', [TopicController::class, 'topics']);

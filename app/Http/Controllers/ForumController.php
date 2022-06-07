@@ -34,9 +34,12 @@ class ForumController extends Controller
     {
         $forum = Forums::where(['forum_id' => $request->input('forum_id')])->first();
         return response($forum->toJson(), 200);
-        return view('forum.show', [
-            'forum' => $forum,
-        ]);
+    }
+    public function forums(Request $request)
+    {
+        $forum = Forums::where(['create_id' => Auth::id(), 'forum_id' => $request->input('forum_id')])->get();
+
+        return response($forum->toJson(), 200);
     }
     public function edit(Request $request)
     {
