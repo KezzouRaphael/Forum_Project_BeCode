@@ -74,9 +74,9 @@ class BoardController extends Controller
 
     //show boards
 
-    public function boards(Request $request)
+    public function boards()
     {
-        $board = Boards::where(['create_id' => Auth::id(), 'board_id' => $request->input('board_id')])->get();
+        $board = Boards::all();
 
         return response($board->toJson(), 200);
     }

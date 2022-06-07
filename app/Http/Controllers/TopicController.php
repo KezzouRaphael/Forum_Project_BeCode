@@ -33,9 +33,9 @@ class TopicController extends Controller
         return response($topic->toJson(), 200);
     }
 
-    public function topics(Request $request)
+    public function topics()
     {
-        $topic = Topics::where(['create_id' => Auth::id(), 'topic_id' => $request->input('topic_id')])->get();
+        $topic = Topics::all();
 
         return response($topic->toJson(), 200);
     }

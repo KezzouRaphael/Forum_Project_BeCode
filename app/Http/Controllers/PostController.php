@@ -72,9 +72,9 @@ class PostController extends Controller
 
     //show posts
 
-    public function posts(Request $request)
+    public function posts()
     {
-        $post = Posts::where(['create_id' => Auth::id(), 'post_id' => $request->input('post_id')])->get();
+        $post = Posts::all();
 
         return response($post->toJson(), 200);
     }
