@@ -19,7 +19,7 @@ use App\Http\Controllers\PostController;
 
 //user
 Route::get('login', [AuthUserController::class, 'login']);
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
+Route::get('register', [RegisterController::class, 'create']);
 
 
 //board
@@ -36,8 +36,8 @@ Route::get('topics/{id}', [TopicController::class, 'topic']);
 Route::get('topics', [TopicController::class, 'topics']);
 
 //post
-Route::post('posts/{id}', [PostController::class, 'post']);
-Route::put('posts', [PostController::class, 'posts']);
+Route::get('posts/{id}', [PostController::class, 'post']);
+Route::get('posts', [PostController::class, 'posts']);
 
 
 

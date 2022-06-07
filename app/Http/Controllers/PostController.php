@@ -75,7 +75,7 @@ class PostController extends Controller
 
     //show posts
     public function posts(Request $request){
-        $post=new Posts();
+        $post=Posts::all();
         return response($post->toJson(),200);
              
     }
