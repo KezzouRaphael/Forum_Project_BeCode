@@ -30,11 +30,12 @@ class ForumController extends Controller
         return response($forum->toJson(), 200);
     }
 
-    public function forum(Request $request)
+    public function forum(Request $request, int $id)
     {
-        $forum = Forums::where(['forum_id' => $request->input('forum_id')])->first();
+        $forum = Forums::where(['forum_id' => $id])->get();
         return response($forum->toJson(), 200);
     }
+
     public function forums(Request $request)
     {
         $forum = Forums::where(['create_id' => Auth::id(), 'forum_id' => $request->input('forum_id')])->get();

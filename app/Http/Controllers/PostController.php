@@ -56,22 +56,21 @@ class PostController extends Controller
     }
 
 
-    // delete board
+    // delete post
     public function delete(Request $request)
     {
         $post = Posts::where(['create_id' => Auth::id(), 'post_id' => $request->input('post_id')])->first();
         $post->delete();
     }
 
-    // show board
-    public function post(Request $request)
+    // show post
+    public function post(Request $request, int $id)
     {
-        $post = Posts::where(['post_id' => $request->input('post_id')])->get();
-
+        $post = Posts::where(['post_id' => $id])->get();
         return response($post->toJson(), 200);
     }
 
-    //show boards
+    //show posts
 
     public function posts(Request $request)
     {

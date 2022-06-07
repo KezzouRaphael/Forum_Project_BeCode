@@ -27,20 +27,19 @@ class TopicController extends Controller
         return response($topic->toJson(), 200);
     }
 
-    public function topic(Request $request)
+    public function topic(Request $request, int $id)
     {
-        $topic = Topics::where(['topic_id' => $request->input('topic_id')])->first();
+        $topic = Topics::where(['topic_id' => $id])->get();
         return response($topic->toJson(), 200);
-        return view('topic.show', [
-            'topic' => $topic,
-        ]);
     }
+
     public function topics(Request $request)
     {
         $topic = Topics::where(['create_id' => Auth::id(), 'topic_id' => $request->input('topic_id')])->get();
 
         return response($topic->toJson(), 200);
     }
+
     public function edit(Request $request)
     {
         $attributes = request()->validate([
