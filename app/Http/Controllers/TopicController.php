@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 
 class TopicController extends Controller
 {
+ 
     public function create()
     {
         $attributes = request()->validate([
@@ -26,20 +27,24 @@ class TopicController extends Controller
         $topic->save();
         return response($topic->toJson(), 200);
     }
+  
 
+  // topic
     public function topic(Request $request, int $id)
     {
         $topic = Topics::where(['topic_id' => $id])->get();
         return response($topic->toJson(), 200);
     }
 
+  // topics
     public function topics()
     {
         $topic = Topics::all();
-
         return response($topic->toJson(), 200);
     }
-
+  
+   
+// edit
     public function edit(Request $request)
     {
         $attributes = request()->validate([
@@ -56,7 +61,10 @@ class TopicController extends Controller
         $topic->save();
         return response($topic->toJson(), 200);
     }
+  
+  
 
+  // delete
     public function delete(Request $request)
     {
         $forum = Topics::where(['create_id' => Auth::id(), 'topic_id' => $request->input('topic_id')])->first()->delete();

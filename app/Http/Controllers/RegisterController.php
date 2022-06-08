@@ -7,15 +7,12 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthUserController;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
+ 
     public function create()
-    {
-        return view('register.create');
-    }
-
-    public function store()
     {
         $attributes = request()->validate([
             'nickname' => ['required', 'max:255', Rule::unique('users', 'nickname')],
@@ -29,6 +26,9 @@ class RegisterController extends Controller
         $user->signature = $attributes['signature'];
         $user->password = Hash::make($attributes['password']);
         $user->save();
+        //! not tested but this should let the user login after the registration
+        Auth::attempt($attributes);
+        
         //return redirect()->action([AuthUserController::class, 'login'], ["email" => $user->email, "password" =>  $attributes['password']]);
         return redirect('/')->with('success', 'Your account has been created.');
     }

@@ -13,10 +13,28 @@ use App\Http\Controllers\PostController;
 
 //user
 Route::get('login', [AuthUserController::class, 'login']);
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::get('register', [RegisterController::class, 'create']);
 
 
+ //board
+Route::get('boards', [BoardController::class, 'boards']);
+Route::get('boards/{id}', [BoardController::class, 'board']);
+
+ 
+// forum
+Route::get('forums/{id}', [ForumController::class, 'forum']);
+Route::get('forums', [ForumController::class, 'forums']);
+
+// topic
+Route::get('topics/{id}', [TopicController::class, 'topic']);
+Route::get('topics', [TopicController::class, 'topics']);
+
+//post
+Route::get('posts/{id}', [PostController::class, 'post']);
+Route::get('posts', [PostController::class, 'posts']);
+//Route::get('forum/{id}/posts', [PostController::class, 'forum_posts']);
+
+ 
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -25,38 +43,27 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthUserController::class, 'user']);
     Route::get('logout', [AuthUserController::class, 'logout']);
 
-    //forums
-    Route::post('forums/create', [ForumController::class, 'create']);
-    Route::put('forums/edit', [ForumController::class, 'edit']);
-    Route::delete('forums/delete', [ForumController::class, 'delete']);
+    // forum
+    Route::get('forums/create', [ForumController::class, 'create']);
+    Route::put('forums/edit/{id}', [ForumController::class, 'edit']);
+    Route::delete('forums/delete/{id}', [ForumController::class, 'delete']);
+    
+    // topic
+    Route::get('topics/create', [TopicController::class, 'create']);
+    Route::put('topics/edit/{id}', [TopicController::class, 'edit']);
+    Route::delete('topics/delete/{id}', [TopicController::class, 'delete']);
 
-    //topic
-    Route::post('topics/create', [TopicController::class, 'create']);
-    Route::put('topics/edit', [TopicController::class, 'edit']);
-    Route::delete('topics/delete', [TopicController::class, 'delete']);
-
-    //board
+    // board
     Route::post('boards/create', [BoardController::class, 'create']);
-    Route::put('boards/edit', [BoardController::class, 'edit']);
-    Route::delete('boards/delete', [BoardController::class, 'delete']);
+    Route::put('boards/edit/{id}', [BoardController::class, 'edit']);
+    Route::delete('boards/delete/{id}', [BoardController::class, 'delete']);
 
     //post
     Route::post('posts/create', [PostController::class, 'create']);
-    Route::put('posts/edit', [PostController::class, 'edit']);
-    Route::delete('posts/delete', [PostController::class, 'delete']);
+    Route::put('posts/edit/{id}', [PostController::class, 'edit']);
+    Route::delete('posts/delete/{id}', [PostController::class, 'delete']);
+
+
 });
-//board
-Route::get('boards/{id}', [BoardController::class, 'board']);
-Route::get('boards', [BoardController::class, 'boards']);
 
-//post
-Route::get('posts/{id}', [PostController::class, 'post']);
-Route::get('posts', [PostController::class, 'posts']);
 
-//forum
-Route::get('forums/{id}', [ForumController::class, 'forum']);
-Route::get('forums', [ForumController::class, 'forums']);
-
-//topic
-Route::get('topics/{id}', [TopicController::class, 'topic']);
-Route::get('topics', [TopicController::class, 'topics']);

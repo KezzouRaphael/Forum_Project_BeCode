@@ -64,20 +64,24 @@ class BoardController extends Controller
 
 
     // show board
+ 
     public function board(Request $request, int $id)
     {
         $board = Boards::where(['board_id' => $id])->get();
         return response($board->toJson(), 200);
+ 
     }
 
 
 
     //show boards
-
-    public function boards()
-    {
-        $board = Boards::all();
-
-        return response($board->toJson(), 200);
+ 
+    public function boards(Request $request){
+        $board=Boards::all();
+        return response($board->toJson(),200);
+             
     }
+    
+ 
+ 
 }

@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 
 class ForumController extends Controller
 {
+ 
     public function create()
     {
         $attributes = request()->validate([
@@ -30,18 +31,26 @@ class ForumController extends Controller
         return response($forum->toJson(), 200);
     }
 
+ 
+        // show forum
     public function forum(Request $request, int $id)
     {
         $forum = Forums::where(['forum_id' => $id])->get();
         return response($forum->toJson(), 200);
     }
 
+ 
+        // show forums
     public function forums(Request $request)
     {
         $forum = Forums::all();
-
         return response($forum->toJson(), 200);
     }
+
+
+  
+
+
     public function edit(Request $request)
     {
         $attributes = request()->validate([
