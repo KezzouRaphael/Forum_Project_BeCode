@@ -33,7 +33,7 @@ class ForumController extends Controller
 
  
         // show forum
-    public function forum(Request $request, int $id)
+    public function forum(int $id)
     {
         $forum = Forums::where(['forum_id' => $id])->get();
         return response($forum->toJson(), 200);
@@ -41,9 +41,9 @@ class ForumController extends Controller
 
  
         // show forums
-    public function forums(Request $request)
+    public function forums( int $id)
     {
-        $forum = Forums::all();
+        $forum = Forums::where(['board_id' => $id])->get();
         return response($forum->toJson(), 200);
     }
 
