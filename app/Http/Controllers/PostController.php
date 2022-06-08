@@ -12,8 +12,6 @@ use App\Models\Posts;
 
 class PostController extends Controller
 {
-    
-
     // create post 
     public function create(Request $request){
         //! Todo a board should be created only by admin
@@ -21,7 +19,7 @@ class PostController extends Controller
             'content' => ['required'],
             'topic' => ['required']
         ]);
-        $post=new Posts();
+        $post = new Posts();
         $post->content = $attributes['content'];
         $post->topic = $attributes['topic'];
         $post->create_id = Auth::id();
@@ -35,7 +33,6 @@ class PostController extends Controller
 
     // edit post
     public function edit(Request $request, int $id){
-
         $attributes = request()->validate([
             'content' => ['required'],
             'topic' => ['required'],
@@ -48,9 +45,8 @@ class PostController extends Controller
         $post->update_id = Auth::id();
         $post->updated_at = now();
         $post->update();
-        //return response($post->toJson(),200);
-       
     }
+
 
  
     // delete post
@@ -68,17 +64,16 @@ class PostController extends Controller
     public function post(Request $request ,int $id) {
         $post=Posts::where(['post_id'=> $id])->get();
         return response($post->toJson(),200);
-         
+ 
     }
 
-
+ 
+  
 
     //show posts
-    public function posts(Request $request){
+    public function posts()
+    {
         $post=Posts::all();
         return response($post->toJson(),200);
-             
     }
-    
-
 }

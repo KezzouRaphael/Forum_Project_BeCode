@@ -31,7 +31,15 @@ class ForumController extends Controller
         return response($forum->toJson(), 200);
     }
 
+ 
+        // show forum
+    public function forum(Request $request, int $id)
+    {
+        $forum = Forums::where(['forum_id' => $id])->get();
+        return response($forum->toJson(), 200);
+    }
 
+ 
         // show forums
     public function forums(Request $request)
     {
@@ -40,12 +48,7 @@ class ForumController extends Controller
     }
 
 
-        // show forum
-        public function forum(Request $request, int $id){
-            $forum = Forums::where(['forum_id' => $id])->get();
-            return response($forum->toJson(),200);
-             
-        }
+  
 
 
     public function edit(Request $request)

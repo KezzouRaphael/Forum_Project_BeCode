@@ -13,17 +13,18 @@ use App\Models\Boards;
 
 class BoardController extends Controller
 {
-    
-    
 
-    // create board 
-    public function create(Request $request){
+
+
+    // create board
+    public function create(Request $request)
+    {
 
         //! Todo a board should be created only by admin
         $attributes = request()->validate([
             'description' => ['required']
         ]);
-        $board=new Boards();
+        $board = new Boards();
         $board->description = $attributes['description'];
         $board->create_id = Auth::id();
         $board->update_id = Auth::id();
@@ -35,25 +36,26 @@ class BoardController extends Controller
 
 
     // edit boards
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
 
         $attributes = request()->validate([
             'description' => ['required']
         ]);
-        $board=Boards::where(['create_id'=> Auth::id(),'board_id'=> $request->input('board_id')])->first();
+        $board = Boards::where(['create_id' => Auth::id(), 'board_id' => $request->input('board_id')])->first();
         $board->description = $attributes['description'];
         $board->update_id = Auth::id();
         $board->updated_at = now();
         $board->update();
         //return response($board->toJson(),200);
-       
+
     }
 
- 
-    public function delete(Request $request){
-        $board=Boards::where(['create_id'=> Auth::id(),'board_id'=> $request->input('board_id')])->first();
+
+    public function delete(Request $request)
+    {
+        $board = Boards::where(['create_id' => Auth::id(), 'board_id' => $request->input('board_id')])->first();
         $board->delete();
-       
     }
 
 
@@ -62,22 +64,24 @@ class BoardController extends Controller
 
 
     // show board
-    public function board(Request $request, int $id){
-        $board=Boards::where(['board_id'=> $id])->get();
-       
-        return response($board->toJson(),200);
-         
+ 
+    public function board(Request $request, int $id)
+    {
+        $board = Boards::where(['board_id' => $id])->get();
+        return response($board->toJson(), 200);
+ 
     }
 
 
 
     //show boards
-
+ 
     public function boards(Request $request){
         $board=Boards::all();
         return response($board->toJson(),200);
              
     }
     
-
+ 
+ 
 }

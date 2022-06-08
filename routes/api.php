@@ -9,20 +9,14 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\PostController;
 
-
-
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {return $request->user();});
-
-
- 
-
 
 //user
 Route::get('login', [AuthUserController::class, 'login']);
 Route::get('register', [RegisterController::class, 'create']);
 
 
-//board
+ //board
 Route::get('boards', [BoardController::class, 'boards']);
 Route::get('boards/{id}', [BoardController::class, 'board']);
 
@@ -38,10 +32,9 @@ Route::get('topics', [TopicController::class, 'topics']);
 //post
 Route::get('posts/{id}', [PostController::class, 'post']);
 Route::get('posts', [PostController::class, 'posts']);
-Route::get('forum/{id}/posts', [PostController::class, 'forum_posts']);
+//Route::get('forum/{id}/posts', [PostController::class, 'forum_posts']);
 
-
-
+ 
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -72,12 +65,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 });
-
-
-
-
-
- 
-
 
 

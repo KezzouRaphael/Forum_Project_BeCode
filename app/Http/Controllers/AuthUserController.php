@@ -19,14 +19,13 @@ class AuthUserController extends Controller
 
     public function login(Request $request)
     {
-       
-       
-       $validated=$request->validate([
-           'email' => ['required','unique:users'],
-           'password' => ['required']
-       ]);
-       
-       
+ 
+        $request->validate([
+            'email' => ['required', 'unique:users'],
+            'password' => ['required']
+        ]);
+
+ 
         $auth = Auth::attempt(["email" => $request->input('email'), "password" => $request->input('password')]);
 
         if (!$auth) {
@@ -39,7 +38,7 @@ class AuthUserController extends Controller
         $user = Auth::user();
         $token = $user->createToken('token')->plainTextToken;
         $cookie = cookie("jwt", $token, 60 * 24); //one day
-        
+
         return response(["message" => $token], 200)->withCookie($cookie);
     }
 
