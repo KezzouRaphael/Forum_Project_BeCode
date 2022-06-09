@@ -32,10 +32,11 @@ class AuthUserController extends Controller
             //user is not found
             return response([
                 'message' => 'error'
-            ], 401);
+            ], 404);
         }
         /** @var \App\Models\User $user **/
         $user = Auth::user();
+        $request->session()->regenerate();
         $token = $user->createToken('token')->plainTextToken;
         $cookie = cookie("jwt", $token, 60 * 24); //one day
 
@@ -52,6 +53,7 @@ class AuthUserController extends Controller
     public function logout()
     {
         $cookie = Cookie::forget("jwt");
+        $request->session()->invalidate();
         return response([
             "message" => "success"
         ], 200)->withCookie($cookie);

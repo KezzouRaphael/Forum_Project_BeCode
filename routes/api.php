@@ -13,7 +13,7 @@ use App\Http\Controllers\PostController;
 
 //user
 Route::get('login', [AuthUserController::class, 'login']);
-Route::get('register', [RegisterController::class, 'create']);
+Route::post('register', [RegisterController::class, 'create']);
 
 
  //board
