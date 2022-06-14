@@ -27,10 +27,9 @@ class RegisterController extends Controller
         $user->password = Hash::make($attributes['password']);
         $user->save();
         //! not tested but this should let the user login after the registration
-        Auth::attempt($attributes);
+        auth()->login($user);
+       //Auth::attempt(["email" => $user->email , "password" =>$user->password ]);
         
-        //return redirect()->action([AuthUserController::class, 'login'], ["email" => $user->email, "password" =>  $attributes['password']]);
-        return redirect('/')->with('success', 'Your account has been created.');
     }
 }
  

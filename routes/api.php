@@ -11,7 +11,9 @@ use App\Http\Controllers\PostController;
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {return $request->user();});
 //user
+
 Route::post('login', [AuthUserController::class, 'login']);
+
 Route::post('register', [RegisterController::class, 'create']);
 
 
@@ -22,16 +24,18 @@ Route::get('boards/{id}', [BoardController::class, 'board']);
 
 // forum
 Route::get('forums/{id}', [ForumController::class, 'forum']);
-Route::get('forums', [ForumController::class, 'forums']);
+//! Route::get('board/{id}/forums', [ForumController::class, 'forums']);
+Route::get('board/{id}/forums', [ForumController::class, 'forums']);
 
 // topic
 Route::get('topics/{id}', [TopicController::class, 'topic']);
-Route::get('topics', [TopicController::class, 'topics']);
+//! Route::get('topics', [TopicController::class, 'topics']);
+Route::get('forum/{id}/topics', [TopicController::class, 'topics']);
 
 //post
 Route::get('posts/{id}', [PostController::class, 'post']);
-Route::get('posts', [PostController::class, 'posts']);
-//Route::get('forum/{id}/posts', [PostController::class, 'forum_posts']);
+//!Route::get('posts', [PostController::class, 'posts']);
+Route::get('topic/{id}/posts', [PostController::class, 'posts']);
 
 
 
