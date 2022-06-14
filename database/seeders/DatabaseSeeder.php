@@ -24,26 +24,26 @@ class DatabaseSeeder extends Seeder
             'email' => "raphael.kezzou@live.fr",
             'signature' => "signature"
         ]);
-        Boards::factory(10)->create([
+        Boards::factory(4)->create([
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);
-        $forum = Forums::factory(1000)->create([
+        $forum = Forums::factory()->create([
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);
-        Topics::factory(1000)->create([
+        Topics::factory(10)->create([
             'forum' => $forum->forum_id,
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);
 
-        Posts::factory(1000)->create([
+        Posts::factory(10)->create([
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);
 
-        $user = User::factory(10)->create([
+        $user = User::factory()->create([
             'nickname' => "user",
             'email' => "user@user.com"
         ]);
