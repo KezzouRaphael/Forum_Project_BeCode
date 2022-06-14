@@ -50,7 +50,7 @@ class PostController extends Controller
 
  
     // delete post
-    public function delete(Request $request, int $id) {
+    public function delete( int $id) {
         $post=Posts::where(['create_id'=> Auth::id(),'post_id'=> $id])->first();
         $post->delete();
        
@@ -61,7 +61,7 @@ class PostController extends Controller
 
 
     // show post
-    public function post(Request $request ,int $id) {
+    public function post(int $id) {
         $post=Posts::where(['post_id'=> $id])->get();
         return response($post->toJson(),200);
  
@@ -71,9 +71,9 @@ class PostController extends Controller
   
 
     //show posts
-    public function posts()
+    public function posts(int $id)
     {
-        $post=Posts::all();
+        $post=Posts::where(['topic' => $id])->get();
         return response($post->toJson(),200);
     }
 }

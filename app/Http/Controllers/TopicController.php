@@ -30,16 +30,16 @@ class TopicController extends Controller
   
 
   // topic
-    public function topic(Request $request, int $id)
+    public function topic(int $id)
     {
         $topic = Topics::where(['topic_id' => $id])->get();
         return response($topic->toJson(), 200);
     }
 
   // topics
-    public function topics()
+    public function topics(int $id)
     {
-        $topic = Topics::all();
+        $topic = Topics::where(['forum' => $id])->get();
         return response($topic->toJson(), 200);
     }
   
