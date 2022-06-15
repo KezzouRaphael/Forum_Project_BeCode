@@ -68,7 +68,21 @@ class BoardController extends Controller
     public function board(Request $request, int $id)
     {
         $board = Boards::where(['board_id' => $id])->get();
-        return response($board->toJson(), 200);
+        if($board->count()> 0){
+            return response(
+                [
+                        "board" => $board->toJson()
+                ]
+                ,200);
+        }else{
+            return response(
+                [
+                        "message" => "failed",
+                        "data" => null
+                ]
+                ,400);
+        }
+       
  
     }
 
@@ -78,7 +92,12 @@ class BoardController extends Controller
  
     public function boards(Request $request){
         $board=Boards::all();
-        return response($board->toJson(),200);
+        return response(
+            [
+                    "message" => "success",
+                    "data" => $board->toJson()
+            ]
+            ,200);
              
     }
     
