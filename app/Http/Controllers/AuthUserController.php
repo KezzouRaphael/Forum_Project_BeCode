@@ -19,8 +19,8 @@ class AuthUserController extends Controller
         if (!$auth) {
             //user is not found
             return response([
-                'message' => 'error'
-            ], 404);
+                'message' => 'Error: This user does not exist.'
+            ], 400);
         }
         /** @var \App\Models\User $user **/
         $user = Auth::user();
