@@ -38,7 +38,7 @@ class AuthUserController extends Controller
     }
 
 
-    public function logout()
+    public function logout(Request $request)
     {
         $cookie = Cookie::forget("jwt");
         $request->session()->invalidate();
