@@ -47,12 +47,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('logout', [AuthUserController::class, 'logout']);
 
     // forum
-    Route::get('forums/create', [ForumController::class, 'create']);
+    Route::post('forums/create', [ForumController::class, 'create']);
     Route::put('forums/edit/{id}', [ForumController::class, 'edit']);
     Route::delete('forums/delete/{id}', [ForumController::class, 'delete']);
 
     // topic
-    Route::get('topics/create', [TopicController::class, 'create']);
+    Route::post('topics/create', [TopicController::class, 'create']);
     Route::put('topics/edit/{id}', [TopicController::class, 'edit']);
     Route::delete('topics/delete/{id}', [TopicController::class, 'delete']);
 

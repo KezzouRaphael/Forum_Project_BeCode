@@ -56,6 +56,7 @@ class BoardController extends Controller
     {
         $board = Boards::where(['create_id' => Auth::id(), 'board_id' => $request->input('board_id')])->first();
         $board->delete();
+        return response($board, 200);
     }
 
 
@@ -64,24 +65,20 @@ class BoardController extends Controller
 
 
     // show board
- 
+
     public function board(Request $request, int $id)
     {
         $board = Boards::where(['board_id' => $id])->get();
         return response($board->toJson(), 200);
- 
     }
 
 
 
     //show boards
- 
-    public function boards(Request $request){
-        $board=Boards::all();
-        return response($board->toJson(),200);
-             
+
+    public function boards(Request $request)
+    {
+        $board = Boards::all();
+        return response($board->toJson(), 200);
     }
-    
- 
- 
 }
