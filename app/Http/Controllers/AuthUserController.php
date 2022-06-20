@@ -43,7 +43,7 @@ class AuthUserController extends Controller
         $cookie = Cookie::forget("jwt");
         $request->session()->invalidate();
         return response([
-            "message" => "success"
+            "message" => "You have been successfully logged out."
         ], 200)->withCookie($cookie);
     }
 }
