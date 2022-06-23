@@ -8,14 +8,13 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Boards;
+use App\Models\Forums;
+use App\Models\Topics;
 
 
 
 class BoardController extends Controller
 {
-
-
-
     // create board
     public function create(Request $request)
     {
@@ -33,8 +32,6 @@ class BoardController extends Controller
         $board->save();
     }
 
-
-
     // edit boards
     public function edit(Request $request)
     {
@@ -51,18 +48,13 @@ class BoardController extends Controller
 
     }
 
-
+    // delete board
     public function delete(Request $request)
     {
         $board = Boards::where(['create_id' => Auth::id(), 'board_id' => $request->input('board_id')])->first();
         $board->delete();
         return response($board, 200);
     }
-
-
-    // delete board
-
-
 
     // show board
 
@@ -71,9 +63,6 @@ class BoardController extends Controller
         $board = Boards::where(['board_id' => $id])->get();
         return response($board->toJson(), 200);
     }
-
-
-
     //show boards
 
     public function boards(Request $request)
@@ -81,4 +70,18 @@ class BoardController extends Controller
         $board = Boards::all();
         return response($board->toJson(), 200);
     }
+    public function getBoardsForums(Request $request, int $id)
+    {
+        $number = Forums::select('*')->where(['board_id' => $id])->count()
+            ->join('boards', 'boards.board_id', '=', 'forums.board_id')
+            ->get();
+        return response($number->toJson(), 200);
+    }
 }
+// public function getBoardsTopics(Request $request, int $id)
+    // {
+    //     $number = Topics::select('*')->where(['board_id' => $id])->count()
+    //         ->join('boards', 'boards.board_id', '=', 'forums.board_id')
+    //         ->get();
+    //     return response($number->toJson(), 200);
+    // }
