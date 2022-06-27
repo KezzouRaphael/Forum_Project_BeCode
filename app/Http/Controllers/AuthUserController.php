@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 
 class AuthUserController extends Controller
@@ -45,5 +46,23 @@ class AuthUserController extends Controller
         return response([
             "message" => "You have been successfully logged out."
         ], 200)->withCookie($cookie);
+    }
+
+    public function edit(Request $request, int $id)
+    {
+        $attributes = request()->validate([
+            'nickname' => ['required'],
+            'email' => ['required'],
+            'password' => ['required'],
+            'signature' => ['required']
+        ]);
+        $user = new User();
+        $user = User::where(['id' => $id])->first();
+        $user->nickname = $attributes['nickname'];
+        $user->email = $attributes['email'];
+        $user->password =  Hash::make($attributes['password']);
+        $user->signature = $attributes['signature'];
+        $user->update();
+        return response($user->toJson(), 200);
     }
 }
