@@ -9,6 +9,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\PostController;
 
+
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {return $request->user();});
 //user
 
@@ -20,6 +21,7 @@ Route::post('register', [RegisterController::class, 'create']);
 //board
 Route::get('boards', [BoardController::class, 'boards']);
 Route::get('boards/{id}', [BoardController::class, 'board']);
+Route::get('boardinfo/{id}', [BoardController::class, 'getBoardsInfo']);
 
 
 // forum
