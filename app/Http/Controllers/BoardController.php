@@ -70,21 +70,31 @@ class BoardController extends Controller
         $board = Boards::all();
         return response($board->toJson(), 200);
     }
- 
+    public function getBoardsForums(Request $request, int $id)
+    {
+        $number = Forums::select('*')->where(['board_id' => $id])->count()
+            ->join('boards', 'boards.board_id', '=', 'forums.board_id')
+            ->get();
+        return response($number->toJson(), 200);
+    }
+
 
     public function getBoardsInfo(Request $request, int $id)
     {
-    
-
-            $result=Topics::select('topic_id')
-                    ->whereIn('forum',function ($query) {
-                $query->select('forum_id')->from('forums')
-                ->Where('board_id','=',$id);
-
-            })->get();
+        $forum = Forums::select('forum_id')->where(['board_id' => $id])->count();
+             
         
+        $topic=Topics::select('topic_id')
+            ->whereIn('forum',function ($query) {
+            $query->select('forum_id')->from('forums')
+            ->Where('board_id','=',1);
 
-        return response($result->toJson(), 200);
+            })->count();
+ 
+    
+ 
+
+        return response(["forum"=>$forum,"topic"=>$topic], 200);
     }
 
 
