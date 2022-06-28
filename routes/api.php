@@ -9,6 +9,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\PostController;
 
+
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {return $request->user();});
 //user
 
@@ -20,6 +21,7 @@ Route::post('register', [RegisterController::class, 'create']);
 //board
 Route::get('boards', [BoardController::class, 'boards']);
 Route::get('boards/{id}', [BoardController::class, 'board']);
+Route::get('boardinfo/{id}', [BoardController::class, 'getBoardsInfo']);
 
 
 // forum
@@ -45,14 +47,14 @@ Route::middleware('auth:sanctum')->group(function () {
     //user
     Route::get('user', [AuthUserController::class, 'user']);
     Route::get('logout', [AuthUserController::class, 'logout']);
-
+    Route::post('modifyUser/{id}', [AuthUserController::class, 'edit']);
     // forum
-    Route::get('forums/create', [ForumController::class, 'create']);
+    Route::post('forums/create', [ForumController::class, 'create']);
     Route::put('forums/edit/{id}', [ForumController::class, 'edit']);
     Route::delete('forums/delete/{id}', [ForumController::class, 'delete']);
 
     // topic
-    Route::get('topics/create', [TopicController::class, 'create']);
+    Route::post('topics/create', [TopicController::class, 'create']);
     Route::put('topics/edit/{id}', [TopicController::class, 'edit']);
     Route::delete('topics/delete/{id}', [TopicController::class, 'delete']);
 

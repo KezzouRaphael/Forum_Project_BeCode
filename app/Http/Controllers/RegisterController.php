@@ -1,6 +1,7 @@
 <?php
- namespace App\Http\Controllers;
- 
+
+namespace App\Http\Controllers;
+
 
 use App\Models\User;
 use Illuminate\Validation\Rule;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
- 
+
     public function create()
     {
         $attributes = request()->validate([
@@ -28,8 +29,9 @@ class RegisterController extends Controller
         $user->save();
         //! not tested but this should let the user login after the registration
         auth()->login($user);
-       //Auth::attempt(["email" => $user->email , "password" =>$user->password ]);
-        
+        //Auth::attempt(["email" => $user->email , "password" =>$user->password ]);
+        return response([
+            "message" => "You have been successfully registered."
+        ], 200);
     }
 }
- 
