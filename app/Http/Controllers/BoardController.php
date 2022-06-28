@@ -61,40 +61,45 @@ class BoardController extends Controller
     public function board(Request $request, int $id)
     {
         $board = Boards::where(['board_id' => $id])->get();
-        if($board->count()> 0){
+        if ($board->count() > 0) {
             return response(
                 [
-                  "board" => $board->toJson()
-                ],200);
-        }
-        else{
+                    "board" => $board->toJson()
+                ],
+                200
+            );
+        } else {
             return response(
                 [
-                  "message" => "failed",
-                  "data" => null
-                ],400);
+                    "message" => "failed",
+                    "data" => null
+                ],
+                400
+            );
         }
     }
 
     public function getBoardsInfo(Request $request, int $id)
     {
         $forum = Forums::select('forum_id')->where(['board_id' => $id])->count();
-        $topic=Topics::select('topic_id')
-            ->whereIn('forum',function ($query) {
-            $query->select('forum_id')->from('forums')
-            ->Where('board_id','=',1);
+        $topic = Topics::select('topic_id')
+            ->whereIn('forum', function ($query) {
+                $query->select('forum_id')->from('forums')
+                    ->Where('board_id', '=', 1);
             })->count();
     }
-    public function boards(Request $request){
-        $board=Boards::all();
+    public function boards(Request $request)
+    {
+        $board = Boards::all();
         return response(
             [
-                    "message" => "success",
-                    "data" => $board->toJson()
-            ]
-            ,200);
-             
+                "message" => "success",
+                "data" => $board->toJson()
+            ],
+            200
+        );
     }
+}
 // public function getBoardsTopics(Request $request, int $id)
     // {
     //     $number = Topics::select('*')->where(['board_id' => $id])->count()
