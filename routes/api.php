@@ -47,7 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //user
     Route::get('user', [AuthUserController::class, 'user']);
     Route::get('logout', [AuthUserController::class, 'logout']);
-
+    Route::post('modifyUser/{id}', [AuthUserController::class, 'edit']);
     // forum
     Route::post('forums/create', [ForumController::class, 'create']);
     Route::put('forums/edit/{id}', [ForumController::class, 'edit']);
