@@ -87,19 +87,14 @@ class BoardController extends Controller
                 $query->select('forum_id')->from('forums')
                     ->Where('board_id', '=', 1);
             })->count();
-  
-        return response(["forum"=>$forum,"topic"=>$topic], 200);
+        return response(["forum" => $forum, "topic" => $topic], 200);
     }
+
+
     public function boards(Request $request)
     {
         $board = Boards::all();
-        return response(
-            [
-                "message" => "success",
-                "data" => $board->toJson()
-            ],
-            200
-        );
+        return response($board->toJson(), 200);
     }
 }
 // public function getBoardsTopics(Request $request, int $id)
