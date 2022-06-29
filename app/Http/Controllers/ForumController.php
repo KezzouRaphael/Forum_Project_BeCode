@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Forums;
+use App\Models\Posts;
+use App\Models\Topics;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -76,4 +78,24 @@ class ForumController extends Controller
         $forum = Forums::where(['create_id' => Auth::id(), 'forum_id' => $request->input('forum_id')])->first()->delete();
         return response($forum, 200);
     }
+
+
+
+
+    public function getForumsInfo(Request $request, int $id)
+    {
+        $topic = Topics::select('topic_id')->where(['forum' => $id])->count();
+
+        $post=Posts::select('post_id')
+        ->whereIn('topic',function ($query) {
+        $query->select('topic_id')->from('topics')
+        ->Where('forum_id','=',1);
+        })->count();
+
+            return response(['topic' => $topic,'post' => $post],200);
+
+    }
+
+
+
 }

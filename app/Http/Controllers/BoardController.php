@@ -95,7 +95,7 @@ class BoardController extends Controller
     {
         $board = Boards::all();
         return response($board->toJson(), 200);
-    }
+    }  
 }
 // public function getBoardsTopics(Request $request, int $id)
     // {
