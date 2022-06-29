@@ -90,10 +90,7 @@ class BoardController extends Controller
             ->Where('board_id','=',1);
 
             })->count();
- 
-    
- 
-
+  
         return response(["forum"=>$forum,"topic"=>$topic], 200);
     }
 
