@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 
 class ForumController extends Controller
 {
- 
+
     public function create()
     {
         $attributes = request()->validate([
@@ -33,24 +33,24 @@ class ForumController extends Controller
         return response($forum->toJson(), 200);
     }
 
- 
-        // show forum
+
+    // show forum
     public function forum(int $id)
     {
         $forum = Forums::where(['forum_id' => $id])->get();
         return response($forum->toJson(), 200);
     }
 
- 
-        // show forums
-    public function forums( int $id)
+
+    // show forums
+    public function forums(int $id)
     {
         $forum = Forums::where(['board_id' => $id])->get();
         return response($forum->toJson(), 200);
     }
 
 
-  
+
 
 
     public function edit(Request $request)
@@ -85,17 +85,11 @@ class ForumController extends Controller
     public function getForumsInfo(Request $request, int $id)
     {
         $topic = Topics::select('topic_id')->where(['forum' => $id])->count();
-
-        $post=Posts::select('post_id')
-        ->whereIn('topic',function ($query) {
-        $query->select('topic_id')->from('topics')
-        ->Where('forum_id','=',1);
-        })->count();
-
-            return response(['topic' => $topic,'post' => $post],200);
-
+        $post = Posts::select('post_id')
+            ->whereIn('topic', function ($query) {
+                $query->select('topic_id')->from('topics')
+                    ->Where('forum_id', '=', 1);
+            })->count();
+        return response(['topic' => $topic, 'post' => $post], 200);
     }
-
-
-
 }
