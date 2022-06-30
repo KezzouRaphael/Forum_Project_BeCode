@@ -86,9 +86,9 @@ class ForumController extends Controller
     {
         $topic = Topics::select('topic_id')->where(['forum' => $id])->count();
         $post = Posts::select('post_id')
-            ->whereIn('topic', function ($query) {
+            ->whereIn('topic', function ($query) use ($id) {
                 $query->select('topic_id')->from('topics')
-                    ->Where('forum_id', '=', 1);
+                    ->Where('forum', '=', $id);
             })->count();
         return response(['topic' => $topic, 'post' => $post], 200);
     }

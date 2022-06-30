@@ -83,9 +83,9 @@ class BoardController extends Controller
     {
         $forum = Forums::select('forum_id')->where(['board_id' => $id])->count();
         $topic = Topics::select('topic_id')
-            ->whereIn('forum', function ($query) {
+            ->whereIn('forum', function ($query) use ($id) {
                 $query->select('forum_id')->from('forums')
-                    ->Where('board_id', '=', 1);
+                    ->Where('board_id', '=', $id);
             })->count();
         return response(["forum" => $forum, "topic" => $topic], 200);
     }
@@ -95,7 +95,7 @@ class BoardController extends Controller
     {
         $board = Boards::all();
         return response($board->toJson(), 200);
-    }  
+    }
 }
 // public function getBoardsTopics(Request $request, int $id)
     // {

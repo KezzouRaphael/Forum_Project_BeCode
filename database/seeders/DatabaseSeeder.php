@@ -24,6 +24,10 @@ class DatabaseSeeder extends Seeder
             'email' => "raphael.kezzou@live.fr",
             'signature' => "signature"
         ]);
+        Boards::factory(2)->create([
+            'create_id' => $user->id,
+            'update_id' => $user->id
+        ]);
         $board = Boards::factory()->create([
             'create_id' => $user->id,
             'update_id' => $user->id
