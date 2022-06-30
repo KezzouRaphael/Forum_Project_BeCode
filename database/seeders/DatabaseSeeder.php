@@ -24,11 +24,26 @@ class DatabaseSeeder extends Seeder
             'email' => "raphael.kezzou@live.fr",
             'signature' => "signature"
         ]);
-        Boards::factory(40)->create([
+        Boards::factory(2)->create([
+            'create_id' => $user->id,
+            'update_id' => $user->id
+        ]);
+        $board = Boards::factory()->create([
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);
         $forum = Forums::factory()->create([
+            'board_id' => $board->board_id,
+            'create_id' => $user->id,
+            'update_id' => $user->id
+        ]);
+        $forum2 = Forums::factory()->create([
+            'board_id' => $board->board_id,
+            'create_id' => $user->id,
+            'update_id' => $user->id
+        ]);
+        $forum3 = Forums::factory()->create([
+            'board_id' => $board->board_id,
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);
@@ -37,8 +52,24 @@ class DatabaseSeeder extends Seeder
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);
+        Topics::factory(15)->create([
+            'forum' => $forum2->forum_id,
+            'create_id' => $user->id,
+            'update_id' => $user->id
+        ]);
+        Topics::factory(10)->create([
+            'forum' => $forum3->forum_id,
+            'create_id' => $user->id,
+            'update_id' => $user->id
+        ]);
+        $topic = Topics::factory()->create([
+            'forum' => $forum->forum_id,
+            'create_id' => $user->id,
+            'update_id' => $user->id
+        ]);
 
         Posts::factory(10)->create([
+            'topic' => $topic->topic_id,
             'create_id' => $user->id,
             'update_id' => $user->id
         ]);

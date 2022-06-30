@@ -21,14 +21,14 @@ Route::post('register', [RegisterController::class, 'create']);
 //board
 Route::get('boards', [BoardController::class, 'boards']);
 Route::get('boards/{id}', [BoardController::class, 'board']);
-Route::get('boardinfo/{id}', [BoardController::class, 'getBoardsInfo']); 
+Route::get('boardinfo/{id}', [BoardController::class, 'getBoardsInfo']);
 
 
 // forum
 Route::get('forums/{id}', [ForumController::class, 'forum']);
 //! Route::get('board/{id}/forums', [ForumController::class, 'forums']);
 Route::get('board/{id}/forums', [ForumController::class, 'forums']);
-Route::get('foruminfo/{id}', [ForumController::class, 'getForumsInfo']); 
+Route::get('foruminfo/{id}', [ForumController::class, 'getForumsInfo']);
 
 // topic
 Route::get('topics/{id}', [TopicController::class, 'topic']);
