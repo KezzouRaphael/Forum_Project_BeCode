@@ -30,8 +30,6 @@ class RegisterController extends Controller
         //! not tested but this should let the user login after the registration
         auth()->login($user);
         //Auth::attempt(["email" => $user->email , "password" =>$user->password ]);
-        return response([
-            "message" => "You have been successfully registered."
-        ], 200);
+        return response(Auth::user(), 200);
     }
 }
